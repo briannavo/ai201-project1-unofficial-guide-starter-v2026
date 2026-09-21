@@ -22,6 +22,7 @@ to it, write down what you saw, and move on. That's a real observation about
 your pipeline, not giving up.
 """
 
+import re
 from dataclasses import dataclass
 
 import config
@@ -80,24 +81,128 @@ def fallback_split(
     return chunks
 
 
+# The blank line between a thread's title and each of its replies, and the
+# sentence end we fall back to when a single reply is somehow over budget.
+_PARAGRAPH_BREAK = re.compile(r"\n\s*\n")
+_SENTENCE_END = re.compile(r"(?<=[.!?])\s+")
+
+# Every document in advice_threads opens with a line like
+# "THREAD: How much laptop do I actually need for CS courses?"
+_TITLE_PREFIX = "THREAD:"
+
+
+def _blocks(text: str, limit: int) -> list[str]:
+    """
+    Break one document into the units this chunker refuses to cut through.
+
+    For advice_threads that's the title line and each individual reply, since
+    they're separated by blank lines. A block longer than `limit` on its own
+    gets broken at sentence ends instead — a chunk over budget is worse than a
+    long reply split in two.
+    """
+    units: list[str] = []
+
+    for block in _PARAGRAPH_BREAK.split(text):
+        block = block.strip()
+        if not block:
+            continue
+
+        if len(block) <= limit:
+            units.append(block)
+            continue
+
+        sentence = ""
+        for part in _SENTENCE_END.split(block):
+            if sentence and len(sentence) + 1 + len(part) > limit:
+                units.append(sentence)
+                sentence = part
+            else:
+                sentence = f"{sentence} {part}".strip()
+        if sentence:
+            units.append(sentence)
+
+    return units
+
+
+def _joined_length(blocks: list[str]) -> int:
+    """How long these blocks will be once joined with blank lines."""
+    if not blocks:
+        return 0
+    return sum(len(b) for b in blocks) + 2 * (len(blocks) - 1)
+
+
 def split_documents(documents: list[Document]) -> list[Chunk]:
     """
-    Split documents into chunks. ⚠️ REPLACE THE BODY OF THIS IN MILESTONE 3.
+    Fill chunks up to config.CHUNK_SIZE characters with whole replies.
 
-    Right now it just calls the fallback. That is the plain, generic behaviour
-    the brief is talking about.
+    The strategy, and why:
 
-    When you write your own strategy, set `produced_by` to
-    "chunker.py::split_documents" so your README's Sample Chunks section names
-    the right function. `app.py chunks` prints that string for you.
+    Every thread in this corpus runs 327-812 characters, and each reply inside
+    it runs roughly 100-200. A fixed 800-character window therefore does almost
+    nothing here — 22 of the 23 threads come back uncut — and a hard cut at any
+    smaller number lands in the middle of somebody's sentence, which produces
+    the fragment the brief warns about.
 
-    Things worth thinking about before you write any code:
-      - Are your documents short posts or long guides?
-      - Is the useful information in one sentence, or spread over a paragraph?
-      - Would splitting on paragraph breaks keep more thoughts intact than
-        splitting on a character count?
+    So 550 is a budget, not a blade. This walks a thread reply by reply and
+    keeps adding replies to the current chunk until the next one would push it
+    past the budget. Chunks come out under 550 characters and never split a
+    reply down the middle.
+
+    Two details that matter for retrieval:
+
+      - The "THREAD: ..." title rides along on every chunk from that thread.
+        It costs ~60 characters and means a chunk taken from halfway down the
+        thread still says which question it is answering.
+      - Overlap is one whole reply, not config.CHUNK_OVERLAP characters. The
+        last reply of a chunk repeats as the first reply of the next, so an
+        answer that depends on two neighbouring replies can still be found in
+        one chunk. (CHUNK_OVERLAP still applies to fallback_split.)
     """
-    return fallback_split(documents)
+    chunk_size = config.CHUNK_SIZE
+    chunks: list[Chunk] = []
+
+    for doc in documents:
+        blocks = _blocks(doc.text, chunk_size)
+        if not blocks:
+            continue
+
+        # Pull the title off the front so it can be repeated on every chunk.
+        header = blocks[0] if blocks[0].startswith(_TITLE_PREFIX) else ""
+        body = blocks[1:] if header else blocks
+        if not body:
+            # A document that is nothing but a title. Keep it as it is.
+            body, header = [blocks[0]], ""
+
+        # The title eats into the budget, so the replies get what's left.
+        budget = chunk_size - (len(header) + 2 if header else 0)
+
+        def emit(buffer: list[str], index: int) -> None:
+            parts = [header, *buffer] if header else buffer
+            chunks.append(
+                Chunk(
+                    text="\n\n".join(parts),
+                    source=doc.source,
+                    index=index,
+                    produced_by="chunker.py::split_documents",
+                )
+            )
+
+        buffer: list[str] = []
+        index = 0
+        for block in body:
+            if buffer and _joined_length(buffer) + 2 + len(block) > budget:
+                emit(buffer, index)
+                index += 1
+                # Carry the last reply forward as overlap, but only if the
+                # next one still fits beside it.
+                tail = buffer[-1]
+                buffer = [tail] if len(tail) + 2 + len(block) <= budget else []
+            buffer.append(block)
+
+        if buffer:
+            emit(buffer, index)
+
+    return chunks
 
 
 def describe(chunks: list[Chunk]) -> str:

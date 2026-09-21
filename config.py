@@ -24,11 +24,13 @@ CORPUS = os.getenv("AI201_CORPUS", "advice_threads")
 
 
 # ─── Chunking (Milestone 3) ──────────────────────────────────────────────────
-# These are deliberately plain, generic numbers. Milestone 3 is where you
-# replace them with numbers that fit the documents you actually read.
+# Threads in advice_threads run 327-812 characters, with replies of roughly
+# 100-200 inside them. 800 left 22 of the 23 threads uncut, so the budget came
+# down to 550 — about two or three replies, which is enough for one answer.
 
-CHUNK_SIZE = 800        # characters per chunk
-CHUNK_OVERLAP = 120     # characters shared between neighbouring chunks
+CHUNK_SIZE = 550        # character budget per chunk, filled with whole replies
+CHUNK_OVERLAP = 120     # only used by fallback_split; split_documents overlaps
+                        # by one whole reply instead
 
 
 # ─── Retrieval (Milestone 4) ─────────────────────────────────────────────────
