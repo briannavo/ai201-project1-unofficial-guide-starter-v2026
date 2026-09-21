@@ -55,9 +55,8 @@
 
      Milestone 3. -->
 
-======================================================================
 Chunk 1  |  source: thread_bike_commute.txt#0  |  produced by: chunker.py::split_documents
-======================================================================
+
 THREAD: Is a bike worth it for a 20 minute walk commute?
 
 --- reply 1 (14 votes) ---
@@ -66,9 +65,8 @@ Yeah. Cuts an 18 minute walk to about 6. The thing nobody mentions is storage â€
 --- reply 2 (9 votes) ---
 Counterpoint, I sold mine. Between November and March the paths are either icy or salted and salt destroys a drivetrain in one season.
 
-======================================================================
 Chunk 2  |  source: thread_commuting.txt#1  |  produced by: chunker.py::split_documents
-======================================================================
+
 THREAD: Commuting an hour each way â€” is it survivable?
 
 --- reply 3 (13 votes) ---
@@ -77,9 +75,8 @@ Watch the evening bus timetable before you register for anything that ends after
 --- reply 4 (17 votes) ---
 I commuted for two years. The thing that made it work was treating the train as study time rather than dead time.
 
-======================================================================
 Chunk 3  |  source: thread_internship_timing.txt#0  |  produced by: chunker.py::split_documents
-======================================================================
+
 THREAD: When should I start looking for a summer internship?
 
 --- reply 1 (30 votes) ---
@@ -91,9 +88,8 @@ Smaller and local places hire in February and March, so if you missed autumn you
 --- reply 3 (19 votes) ---
 The careers office reviews CVs on a drop-in basis and the queue is almost never longer than one person.
 
-======================================================================
 Chunk 4  |  source: thread_office_hours_etiquette.txt#0  |  produced by: chunker.py::split_documents
-======================================================================
+
 THREAD: Is it weird to go to office hours with no specific question?
 
 --- reply 1 (44 votes) ---
@@ -105,9 +101,8 @@ They're usually empty. You are doing the instructor a favour by turning up.
 --- reply 3 (18 votes) ---
 If it helps, treat it as a standing appointment. Go every week for a month and it stops feeling like a thing.
 
-======================================================================
 Chunk 5  |  source: thread_roommate_conflict.txt#0  |  produced by: chunker.py::split_documents
-======================================================================
+
 THREAD: Roommate situation isn't working. What now?
 
 --- reply 1 (28 votes) ---
