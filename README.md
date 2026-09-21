@@ -144,6 +144,7 @@ I ran 5 questions that my corpus covers and 5 that aren't. I found that 0.6 was 
      Milestone 4. -->
 
 | Question | In corpus? | Best distance |
+| --- | --- | --- |
 | How should I handle a bad roommate situation? | Yes | 0.3745 |
 | What should my laptop specs be for CS major? | Yes | 0.3087 |
 | Should I email my professor about an issue I am having? | Yes | 0.6188 |
