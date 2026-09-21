@@ -166,9 +166,9 @@ I ran 5 questions that my corpus covers and 5 that aren't. I found that 0.6 was 
 
      Milestone 5. -->
 
-**1.**
+**1. I asked Claude to help me write the chunking function from my notes. It gave me a recommended chunk size, but ignored overlap, so I prompted it with further information on overlap.**
 
-**2.**
+**2. I asked Claude to help me brainstorm the best cutoff given the distances for each test question. It gave me 0.70 which was close to my idea, but provided no strong evidence for why. I prompted Claude to explain why 0.70 so that I could more confidently decide on a cutoff.**
 
 <!-- ── Stretch features ─────────────────────────────────────────────────────
      Doing one? Say so here BEFORE you start. A feature this README never
