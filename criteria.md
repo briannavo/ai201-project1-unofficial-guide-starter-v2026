@@ -25,7 +25,7 @@ contains the answer.
 **Why this target:**
 <!-- e.g. "One of my questions is about a topic only two documents mention, so
      I expect that one to be hard." -->
-
+Some questions are harder to answer as some topics have users that say differing information, but at leat 80% of the test questions should return chunks with the correct answer.
 ---
 
 ## 2. Every answer names a source
@@ -35,7 +35,7 @@ Every answer the system produces names at least one source document.
 **Why this target:**
 <!-- Why all five and not four? What about your setup makes that achievable —
      or what would have to go wrong for it not to be? -->
-
+Every answer should name at least one source document so that the answer can be explainable. Without knowing where the answer comes from, we cannot fix errors that occur. Most topics only have one relevant thread so one document is enough.
 ---
 
 ## 3. The relevance gate stops out-of-corpus questions
@@ -52,10 +52,12 @@ in at least 4 of 5 tries.
 **Why this target:**
 <!-- What did your distances look like when you set the cutoff in Milestone 4?
      Was there a clean gap, or did the two groups overlap? -->
-
+The system should not try to hallucinate an answer when encountering an out of context question, so setting the cutoff to be 4/5 tries ensures this while leaving some room for errors.
 ---
 
 ## 4. Something about your chunks
+
+Each answer should only require about 1-2 chunks.
 
 <!-- YOU WRITE THIS ONE.
 
@@ -72,12 +74,14 @@ in at least 4 of 5 tries.
 
 
 **Why this target:**
-
+Each chunk contains one question and various replies to the question. The topics in the corpus widely vary so almost any question that could be asked to the system should be able to be answered by 1-2 specific chunks.
 
 
 ---
 
 ## 5. Your choice
+
+The answer should take comment votes into account, with more votes having more weight in the final answer.
 
 <!-- YOU WRITE THIS ONE TOO.
 
@@ -90,7 +94,7 @@ in at least 4 of 5 tries.
 
 
 **Why this target:**
-
+Votes represent what other users considered to be the top answer to the thread, thus these replies should be weighted more heavily in the answer from the system.
 
 
 ---
