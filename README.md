@@ -29,8 +29,8 @@
 
 ## Chunking Strategy
 
-**Chunk size:**
-**Overlap:**
+**Chunk size: 550 characters**
+**Overlap: One whole reply**
 
 <!-- What about YOUR documents made you pick these numbers? Short posts and
      long sectioned guides don't want the same chunking, and "800 seemed
@@ -41,6 +41,8 @@
      more than pretending you got it right first time.
 
      Milestone 3. -->
+
+550 characters fits enough for the title (question/topic) and 2-3 replies, which is the smallest amount in this corpus that contains an answer and not only a single user's opinion. The overlap is one whole reply as in some threads some users disagree or say differing things, so we don't want rebuttals separated from what it is rebutting
 
 ## Sample Chunks
 
@@ -53,44 +55,84 @@
 
      Milestone 3. -->
 
-**Chunk 1** — source: `` — produced by: ``
+======================================================================
+Chunk 1  |  source: thread_bike_commute.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+THREAD: Is a bike worth it for a 20 minute walk commute?
 
-```
-```
+--- reply 1 (14 votes) ---
+Yeah. Cuts an 18 minute walk to about 6. The thing nobody mentions is storage — covered bike parking exists at three buildings and is full by 9am at all three.
 
-**Chunk 2** — source: `` — produced by: ``
+--- reply 2 (9 votes) ---
+Counterpoint, I sold mine. Between November and March the paths are either icy or salted and salt destroys a drivetrain in one season.
 
-```
-```
+======================================================================
+Chunk 2  |  source: thread_commuting.txt#1  |  produced by: chunker.py::split_documents
+======================================================================
+THREAD: Commuting an hour each way — is it survivable?
 
-**Chunk 3** — source: `` — produced by: ``
+--- reply 3 (13 votes) ---
+Watch the evening bus timetable before you register for anything that ends after 6pm.
 
-```
-```
+--- reply 4 (17 votes) ---
+I commuted for two years. The thing that made it work was treating the train as study time rather than dead time.
 
-**Chunk 4** — source: `` — produced by: ``
+======================================================================
+Chunk 3  |  source: thread_internship_timing.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+THREAD: When should I start looking for a summer internship?
 
-```
-```
+--- reply 1 (30 votes) ---
+Earlier than feels reasonable. Large employers close applications in October and November for the following summer.
 
-**Chunk 5** — source: `` — produced by: ``
+--- reply 2 (25 votes) ---
+Smaller and local places hire in February and March, so if you missed autumn you have not missed everything.
 
-```
-```
+--- reply 3 (19 votes) ---
+The careers office reviews CVs on a drop-in basis and the queue is almost never longer than one person.
+
+======================================================================
+Chunk 4  |  source: thread_office_hours_etiquette.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+THREAD: Is it weird to go to office hours with no specific question?
+
+--- reply 1 (44 votes) ---
+No, and this is the single most common thing first years get wrong. 'I'm following the lectures but I don't feel like I understand the shape of it' is a completely normal thing to say.
+
+--- reply 2 (29 votes) ---
+They're usually empty. You are doing the instructor a favour by turning up.
+
+--- reply 3 (18 votes) ---
+If it helps, treat it as a standing appointment. Go every week for a month and it stops feeling like a thing.
+
+======================================================================
+Chunk 5  |  source: thread_roommate_conflict.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+THREAD: Roommate situation isn't working. What now?
+
+--- reply 1 (28 votes) ---
+Talk to your RA early, and frame it as 'we need help sorting this out' rather than 'move me'. Room changes are possible butthe process starts with mediation and skipping that step slows it down.
+
+--- reply 2 (14 votes) ---
+Room changes happen at the semester boundary almost always, and mid-semester only in fairly serious cases.
 
 ## Sample Answer
 
 <!-- One complete question and answer, pasted as text, with the source line
      visible. Milestone 4. -->
 
-**Question:**
+**Question: Does it matter if I sleep late?**
 
-**Answer:**
+**Yes, fixing your sleep schedule does matter, and one helpful strategy is scheduling no classes before 10 AM rather than trying to become a morning person (thread_sleep_schedule.txt). Additionally, the library being open until 2 AM is considered a trap rather than a schedule (thread_sleep_schedule.txt).
+
+Sources retrieved: thread_commuting.txt, thread_late_work.txt, thread_sleep_sched**
 
 ```
 ```
 
-**My relevance cutoff:**
+**My relevance cutoff: 0.70**
+
+I ran 5 questions that my corpus covers and 5 that aren't. I found that 0.6 was slightly too low to cover all of the best distances for in corpus questions, so I raised it to 0.70. The gap between in-scope and out of scope distances was from 0.619-0.787 so this cutoff is enough to keep out of corpus answers out, while not cutting out correct answers that are slightly further than 0.6.
 
 <!-- The number you set in config.py, and how you got there.
 
@@ -102,8 +144,16 @@
      Milestone 4. -->
 
 | Question | In corpus? | Best distance |
-|---|---|---|
-|  |  |  |
+| How should I handle a bad roommate situation? | Yes | 0.3745 |
+| What should my laptop specs be for CS major? | Yes | 0.3087 |
+| Should I email my professor about an issue I am having? | Yes | 0.6188 |
+| Can I go to office hours without questions? | Yes | 0.4886 |
+| Does it matter if I sleep late? | Yes | 0.6048 |
+| What is the capital of Mongolia? | No | 0.8902 |
+| How do I change the oil in a diesel engine? | No | 0.9299 |
+| Who won the 1994 World Cup? | No | 0.7866 |
+| What is the recommended dosage of ibuprofen for a headache? | No | 0.8280 |
+| How do I write a for loop in Rust? | No | 0.8712 |
 
 ## How I Used AI
 
