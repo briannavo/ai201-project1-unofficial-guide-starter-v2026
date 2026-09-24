@@ -17,7 +17,7 @@ pipeline earns credit; *"80% seemed reasonable"* does not.
 
 ---
 
-## 1. Retrieved chunks contain the answer
+## 1. Retrieved chunks contain the answer MET
 
 For at least 4 of my 5 test questions, the retrieved chunks include one that
 contains the answer.
@@ -26,9 +26,13 @@ contains the answer.
 <!-- e.g. "One of my questions is about a topic only two documents mention, so
      I expect that one to be hard." -->
 Some questions are harder to answer as some topics have users that say differing information, but at least 80% of the test questions should return chunks with the correct answer.
+
+**Why was this met:**
+Although not every run was consistent in pass/fail, each test question in all three runs retrieved the correct chunk that would contain the answer.
 ---
 
-## 2. Every answer names a source
+
+## 2. Every answer names a source MET
 
 Every answer the system produces names at least one source document.
 
@@ -36,9 +40,12 @@ Every answer the system produces names at least one source document.
 <!-- Why all five and not four? What about your setup makes that achievable —
      or what would have to go wrong for it not to be? -->
 Every answer should name at least one source document so that the answer can be explainable. Without knowing where the answer comes from, we cannot fix errors that occur. Most topics only have one relevant thread so one document is enough.
+
+**Why was this met:**
+Every answer that was provided in the test runs provided a source either in-text or after the answer with a "Source" tag.
 ---
 
-## 3. The relevance gate stops out-of-corpus questions
+## 3. The relevance gate stops out-of-corpus questions MET
 
 When I ask a question my documents clearly don't cover, the relevance gate
 stops it and the system returns "I don't have enough information about that" —
@@ -53,9 +60,12 @@ in at least 4 of 5 tries.
 <!-- What did your distances look like when you set the cutoff in Milestone 4?
      Was there a clean gap, or did the two groups overlap? -->
 The system should not try to hallucinate an answer when encountering an out of context question, so setting the cutoff to be 4/5 tries ensures this while leaving some room for errors.
+
+**Why was this met:**
+All of my 5 test out-of-scope questions were refused in the 3 test runs because they did not meet the best distance cutoff that I set (0.7). This worked exactly as I wanted to and ensured that questions that my corpus could not actually answer weren't asked.
 ---
 
-## 4. Something about your chunks
+## 4. Something about your chunks MET
 
 Each answer should only require about 1-2 chunks.
 
@@ -76,12 +86,15 @@ Each answer should only require about 1-2 chunks.
 **Why this target:**
 Each chunk contains one question and various replies to the question. The topics in the corpus widely vary so almost any question that could be asked to the system should be able to be answered by 1-2 specific chunks.
 
-
+**Why was this met:**
+All of my test questions in all three runs only source one to two chunks at most for the answer. 
 ---
 
-## 5. Your choice
+## 5. Your choice MISSED
 
-The answer should take comment votes into account, with more votes having more weight in the final answer.
+Original: The answer should take comment votes into account, with more votes having more weight in the final answer.
+
+Revised: Source attribution for each answer should be correct and not merely present for at least 4 out of 5 test questions.
 
 <!-- YOU WRITE THIS ONE TOO.
 
@@ -96,7 +109,8 @@ The answer should take comment votes into account, with more votes having more w
 **Why this target:**
 Votes represent what other users considered to be the top answer to the thread, thus these replies should be weighted more heavily in the answer from the system.
 
-
+**Why was this missed:**
+This criteria couldn't be judged properly as I never implemented the idea of replies having votes to the RAG system, thus it couldn't actually weight higher voted replies in the answer. The new version is something that I can actually check using my evaluation results.
 ---
 
 <!-- ─────────────────────────────────────────────────────────────────────────
