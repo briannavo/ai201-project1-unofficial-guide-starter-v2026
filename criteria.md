@@ -25,7 +25,7 @@ contains the answer.
 **Why this target:**
 <!-- e.g. "One of my questions is about a topic only two documents mention, so
      I expect that one to be hard." -->
-Some questions are harder to answer as some topics have users that say differing information, but at leat 80% of the test questions should return chunks with the correct answer.
+Some questions are harder to answer as some topics have users that say differing information, but at least 80% of the test questions should return chunks with the correct answer.
 ---
 
 ## 2. Every answer names a source
