@@ -23,9 +23,9 @@ names a target of "4 of 5", and four of three is not a thing.
 
 QUESTIONS = [
     # {"question": "...", "expects": "..."},
-    {"question": "How should I handle a bad roommate situation?", "expects": "Talk to your RA"},
-    {"question": "What should my laptop specs be for CS major?", "expects": "16 GB"},
-    {"question": "Should I email my professor about an issue I am having?", "expects": "Office hours"},
+    {"question": "For my math class, does the edition of my math textbook matter?", "expects": "No"},
+    {"question": "Is 16GB of RAM enough for my laptop as a CS major?", "expects": "Yes"},
+    {"question": "Is it better to be involved in a lot of clubs or focus on only a few clubs?", "expects": "A few clubs"},
     {"question": "Can I go to office hours without questions?", "expects": "Yes"},
     {"question": "Does it matter if I sleep late?", "expects": "Yes"},
 ]
