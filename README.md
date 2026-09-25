@@ -193,15 +193,164 @@ I ran 5 questions that my corpus covers and 5 that aren't. I found that 0.6 was 
 
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
-| 1. Retrieved chunk contains the answer | 4 of 5 |  |  |  |  |
-| 2. Every answer names a source | 5 of 5 |  |  |  |  |
-| 3. Gate stops out-of-corpus questions | 4 of 5 |  |  |  |  |
-| 4. | | | | | |
-| 5. | | | | | |
+| 1. Retrieved chunk contains the answer | 4 of 5 | pass | pass | pass | MET |
+| 2. Every answer names a source | 5 of 5 | pass | pass | pass | MET |
+| 3. Gate stops out-of-corpus questions | 4 of 5 | pass | pass | pass | MET |
+| 4. Each answer should only require about 1-2 chunks.| 5 of 5 | pass | pass | pass | MET |
+| 5. | The answer should take comment votes into account, with more votes having more weight in the final answer. | 5 of 5 | fail | fail | fail | MISSED |
 
 <!-- Underneath, paste the REAL output for each criterion from one of your
      runs — the actual text your system produced, not a description of it.
      Name the file and function that produced it. -->
+
+File: results\run_2026-09-23_2052.md
+Function: py run_eval.py
+
+### For my math class, does the edition of my math textbook matter? — run 1
+
+- Best distance: 0.4988 (passed the gate)
+- Sources retrieved: thread_first_gen.txt, thread_printing.txt, thread_textbook_editions.txt
+
+```
+For math, the edition almost never matters; only the problem numbering shifts. 
+
+Source: `thread_textbook_editions.txt`
+```
+
+### For my math class, does the edition of my math textbook matter? — run 2
+
+- Best distance: 0.4988 (passed the gate)
+- Sources retrieved: thread_first_gen.txt, thread_printing.txt, thread_textbook_editions.txt
+
+```
+For a math class, the edition of the textbook almost never matters, as only the problem numbering shifts. 
+
+Source: `thread_textbook_editions.txt`
+```
+
+### For my math class, does the edition of my math textbook matter? — run 3
+
+- Best distance: 0.4988 (passed the gate)
+- Sources retrieved: thread_first_gen.txt, thread_printing.txt, thread_textbook_editions.txt
+
+```
+For math, the edition almost never matters; only the problem numbering shifts. 
+
+Source: thread_textbook_editions.txt
+```
+
+### Is 16GB of RAM enough for my laptop as a CS major? — run 1
+
+- Best distance: 0.2290 (passed the gate)
+- Sources retrieved: thread_laptop_specs.txt, thread_pass_fail.txt, thread_printing.txt
+
+```
+Yes, 16GB of RAM is recommended as the number worth paying for, with users noting that 8GB can struggle by the final project (thread_laptop_specs.txt).
+```
+
+### Is 16GB of RAM enough for my laptop as a CS major? — run 2
+
+- Best distance: 0.2290 (passed the gate)
+- Sources retrieved: thread_laptop_specs.txt, thread_pass_fail.txt, thread_printing.txt
+
+```
+Yes, 16GB of RAM is enough and is the one number worth paying for. 
+
+Source: thread_laptop_specs.txt
+```
+
+### Is 16GB of RAM enough for my laptop as a CS major? — run 3
+
+- Best distance: 0.2290 (passed the gate)
+- Sources retrieved: thread_laptop_specs.txt, thread_pass_fail.txt, thread_printing.txt
+
+```
+Yes, 16GB of RAM is enough and is the one number worth paying for. 
+
+Source: thread_laptop_specs.txt
+```
+
+### Is it better to be involved in a lot of clubs or focus on only a few clubs? — run 1
+
+- Best distance: 0.5077 (passed the gate)
+- Sources retrieved: thread_clubs.txt, thread_first_gen.txt, thread_study_spots.txt
+
+```
+It is better to focus on a few clubs rather than breadth across many, because depth in one club is worth more if you want a leadership position later. (Source: thread_clubs.txt)
+```
+
+### Is it better to be involved in a lot of clubs or focus on only a few clubs? — run 2
+
+- Best distance: 0.5077 (passed the gate)
+- Sources retrieved: thread_clubs.txt, thread_first_gen.txt, thread_study_spots.txt
+
+```
+It is better to focus on a few clubs. According to *thread_clubs.txt*, depth in one club is worth more for future leadership positions than breadth across five.
+```
+
+### Is it better to be involved in a lot of clubs or focus on only a few clubs? — run 3
+
+- Best distance: 0.5077 (passed the gate)
+- Sources retrieved: thread_clubs.txt, thread_first_gen.txt, thread_study_spots.txt
+
+```
+According to `thread_clubs.txt`, depth in one club is worth more than breadth across five if you want a leadership position later. Additionally, reply 1 states that "Two you actually turn up to beats six you signed up for at the fair."
+```
+
+### Can I go to office hours without questions? — run 1
+
+- Best distance: 0.4886 (passed the gate)
+- Sources retrieved: thread_first_year_regret.txt, thread_office_hours_etiquette.txt, thread_professor_email.txt
+
+```
+Yes, you can go to office hours without a specific question. As one reply notes, saying something like "I'm following the lectures but I don't feel like I understand the shape of it" is completely normal (thread_office_hours_etiquette.txt).
+```
+
+### Can I go to office hours without questions? — run 2
+
+- Best distance: 0.4886 (passed the gate)
+- Sources retrieved: thread_first_year_regret.txt, thread_office_hours_etiquette.txt, thread_professor_email.txt
+
+```
+Yes, it is completely normal to go to office hours without a specific question, such as saying you don't feel like you understand the shape of the lectures (*thread_office_hours_etiquette.txt*). Additionally, office hours are usually empty, so you are actually doing the instructor a favor by showing up (*thread_office_hours_etiquette.txt* and *thread_professor_email.txt*).
+```
+
+### Can I go to office hours without questions? — run 3
+
+- Best distance: 0.4886 (passed the gate)
+- Sources retrieved: thread_first_year_regret.txt, thread_office_hours_etiquette.txt, thread_professor_email.txt
+
+```
+Yes, it is completely normal to go to office hours without a specific question, such as to say you are following the lectures but don't feel like you understand the shape of it (thread_office_hours_etiquette.txt). Additionally, office hours are usually empty, so attending them does the instructor a favor (thread_office_hours_etiquette.txt and thread_professor_email.txt).
+```
+
+### Does it matter if I sleep late? — run 1
+
+- Best distance: 0.6048 (passed the gate)
+- Sources retrieved: thread_commuting.txt, thread_late_work.txt, thread_sleep_schedule.txt
+
+```
+Yes, it matters, and a helpful strategy is to schedule no classes before 10am rather than trying to become a morning person (*thread_sleep_schedule.txt*).
+```
+
+### Does it matter if I sleep late? — run 2
+
+- Best distance: 0.6048 (passed the gate)
+- Sources retrieved: thread_commuting.txt, thread_late_work.txt, thread_sleep_schedule.txt
+
+```
+Yes, fixing your sleep matters, and one helpful strategy is scheduling no classes before 10 AM rather than trying to become a morning person (thread_sleep_schedule.txt). Additionally, the library being open until 2 AM is a trap rather than a schedule to follow (thread_sleep_schedule.txt).
+```
+
+### Does it matter if I sleep late? — run 3
+
+- Best distance: 0.6048 (passed the gate)
+- Sources retrieved: thread_commuting.txt, thread_late_work.txt, thread_sleep_schedule.txt
+
+```
+Yes, fixing your sleep matters, and the most helpful approach may be scheduling no classes before 10am rather than trying to become a morning person (thread_sleep_schedule.txt).
+```
+
 
 ## Verdicts
 
@@ -216,11 +365,14 @@ I ran 5 questions that my corpus covers and 5 that aren't. I found that 0.6 was 
 
 | # | Criterion | Verdict | How I decided |
 |---|---|---|---|
-| 1 |  |  |  |
-| 2 |  |  |  |
-| 3 |  |  |  |
-| 4 |  |  |  |
-| 5 |  |  |  |
+| 1 | For at least 4 of my 5 test questions, the retrieved chunks include one that
+contains the answer. | MET | Although not every run was consistent in pass/fail, each test question in all three runs retrieved the correct chunk that would contain the answer. |
+| 2 | Every answer the system produces names at least one source document. | MET | Every answer that was provided in the test runs provided a source either in-text or after the answer with a "Source" tag. |
+| 3 | When I ask a question my documents clearly don't cover, the relevance gate
+stops it and the system returns "I don't have enough information about that" —
+in at least 4 of 5 tries. | MET | All of my 5 test out-of-scope questions were refused in the 3 test runs because they did not meet the best distance cutoff that I set (0.7). This worked exactly as I wanted to and ensured that questions that my corpus could not actually answer weren't asked. |
+| 4 | Each answer should only require about 1-2 chunks. | MET | All of my test questions in all three runs only source one to two chunks at most for the answer.  |
+| 5 | The answer should take comment votes into account, with more votes having more weight in the final answer. | MISSED | This criteria couldn't be judged/measured properly as I never implemented the idea of replies having votes to the RAG system, thus it couldn't actually weight higher voted replies in the answer. |
 
 ## Diagnoses
 
@@ -242,11 +394,19 @@ I ran 5 questions that my corpus covers and 5 that aren't. I found that 0.6 was 
 
      Milestone 3. -->
 
+In my original run, I realized after checking my run results, question 1 fully failed and question 3 had mixed pass/fail because my questions and expectations were incorrect. I was asking questions that were too vague and/or my "expects" phrase was not something that would be said consistently. For example, in question 3 about whether it's better to be in a lot of clubs or a few clubs, I had the expected phrase be "a few clubs". However, one response that failed said depth is better than breadth, which is essentially the same thing but did not use the expects phrase. 
+
 ## The Improvement
 
-**What I changed:**
+**What I changed:** 
 
-**Why I picked it:**
+Question 1 to be: How many pass/fails do I get in one year?
+
+Question 3 to be: How many pages does the $30 printing quota give you?
+
+**Why I picked it:** 
+
+Question 1 was too vague before and did not have a single direct answer from the corpus. I changed it to be much more specific and something that had one single correct answer from the corpus. Question 3 before was answered correct, but I incorrectly decided an expects phrase that wasn't realistic/would be repeated. I changed it to a question that is specific and has one direct answer.
 
 <!-- Connect it to a specific diagnosis above in one sentence. If you can't,
      you picked a fix because it sounded impressive. -->
@@ -258,11 +418,11 @@ I ran 5 questions that my corpus covers and 5 that aren't. I found that 0.6 was 
 
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
-| 1. Retrieved chunk contains the answer | 4 of 5 |  |  |  |  |
-| 2. Every answer names a source | 5 of 5 |  |  |  |  |
-| 3. Gate stops out-of-corpus questions | 4 of 5 |  |  |  |  |
-| 4. | | | | | |
-| 5. | | | | | |
+| 1. Retrieved chunk contains the answer | 4 of 5 | pass | pass | pass | MET |
+| 2. Every answer names a source | 5 of 5 | pass | pass | pass | MET |
+| 3. Gate stops out-of-corpus questions | 4 of 5 | pass | pass | pass | MET |
+| 4. Each answer should only require about 1-2 chunks.| 5 of 5 | pass | pass | pass | MET |
+| 5. | Source attribution for each answer should be correct and not merely present for at least 4 out of 5 test questions.| 4 of 5 | pass | pass | pass | MET |
 
 **Did it help?**
 
@@ -272,6 +432,8 @@ I ran 5 questions that my corpus covers and 5 that aren't. I found that 0.6 was 
      tell.
 
      Milestone 4. -->
+
+Yes, both changing my questions to be more specific and changing my 5th criteria worked. I know this because now my question tests are passing all 3 runs, and my 5th criteria is relevant, can be measured, and is passing for the new run.
 
 ## What's Still Broken
 
@@ -283,9 +445,13 @@ I ran 5 questions that my corpus covers and 5 that aren't. I found that 0.6 was 
 
      Milestone 5. -->
 
+     After my fixes, none of my criterion are missed.
+
 ## What I'd Do Differently
 
 <!-- Knowing what you know now — which of your five criteria would you write
      differently, and why?
 
      Milestone 5. -->
+
+     Knowing what I know now, I would've rewritten my 5th criteria to begin with. It didn't make sense with the RAG system that we developed and could not be measured.

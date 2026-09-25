@@ -90,7 +90,7 @@ Each chunk contains one question and various replies to the question. The topics
 All of my test questions in all three runs only source one to two chunks at most for the answer. 
 ---
 
-## 5. Your choice MISSED
+## 5. Your choice MET (originally MISSED)
 
 Original: The answer should take comment votes into account, with more votes having more weight in the final answer.
 
@@ -104,13 +104,11 @@ Revised: Source attribution for each answer should be correct and not merely pre
      present — anything, as long as it names a number or an observable
      outcome. -->
 
-
-
 **Why this target:**
 Votes represent what other users considered to be the top answer to the thread, thus these replies should be weighted more heavily in the answer from the system.
 
 **Why was this missed:**
-This criteria couldn't be judged properly as I never implemented the idea of replies having votes to the RAG system, thus it couldn't actually weight higher voted replies in the answer. The new version is something that I can actually check using my evaluation results.
+This criteria couldn't be judged/measured properly as I never implemented the idea of replies having votes to the RAG system, thus it couldn't actually weight higher voted replies in the answer. The new version is something that I can actually check using my evaluation results. I'm not sure what stage to put for this criteria being missed.
 ---
 
 <!-- ─────────────────────────────────────────────────────────────────────────
